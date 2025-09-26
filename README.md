@@ -1,4 +1,4 @@
-# Tes Penilaian: Aplikasi Web Sederhana - Implementasi .NET
+# Aplikasi Web Sederhana - Implementasi .NET
 
 Repositori ini berisi solusi untuk Tes Penilaian Software Engineer, dengan fokus pada implementasi .NET dari aplikasi web sederhana dengan fitur Otentikasi dan Manajemen Post (CRUD).
 
