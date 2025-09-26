@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="hero min-h-96 bg-base-200 rounded-box shadow-xl">
+    <div class="hero-content text-center">
+        <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Welcome to MyWebApp!</h1>
+            <p class="py-6 text-lg">This is a simple web application built with ASP.NET Core Razor Pages and styled with
+                <span class="text-primary font-semibold">DaisyUI</span>.
+            </p>
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-primary btn-lg mr-2"><i
+                        class="fa-solid fa-user-plus mr-2"></i>Get Started (Register)</a>
+                <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-outline btn-lg mt-2"><i
+                        class="fa-solid fa-sign-in-alt mr-2"></i>Login Now</a>
+            }
+            else
+            {
+                <a asp-page="/Posts/Index" class="btn btn-primary btn-lg"><i class="fa-solid fa-clipboard mr-2"></i> View My
+                    Posts</a>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+@using Microsoft.AspNetCore.Identity
+@using MyWebApp.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="menu menu-horizontal px-1">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="dropdown dropdown-end">
+            <div tabindex="0" role="button" class="btn btn-ghost m-1">
+                <i class="fa-solid fa-user-circle mr-1"></i> Hello @UserManager.GetUserName(User)! <i
+                    class="fa-solid fa-caret-down ml-1"></i>
+            </div>
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                <li>
+                    <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+                        <i class="fa-solid fa-gear mr-1"></i> Manage Account
+                    </a>
+                </li>
+                <li>
+                    <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout"
+                        asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
+                        <button id="logout" type="submit">
+                            <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    }
+    else
+    {
+        <li><a class="btn btn-ghost" id="register" asp-area="Identity" asp-page="/Account/Register"><i
+                    class="fa-solid fa-user-plus mr-1"></i> Register</a></li>
+        <li><a class="btn btn-ghost" id="login" asp-area="Identity" asp-page="/Account/Login"><i
+                    class="fa-solid fa-sign-in-alt mr-1"></i> Login</a></li>
+    }
+</ul>

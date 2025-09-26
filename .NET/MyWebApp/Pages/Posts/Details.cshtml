@@ -1,0 +1,36 @@
+@page
+@model MyWebApp.Pages.Posts.DetailsModel
+
+@{
+    ViewData["Title"] = "Post Details";
+}
+
+<h1 class="text-4xl font-bold mb-6 text-center">Post Details</h1>
+
+<div class="card bg-base-100 shadow-xl p-8 max-w-3xl mx-auto">
+    <div class="card-body">
+        <h2 class="card-title text-3xl mb-4">@Html.DisplayFor(model => model.Post.Title)</h2>
+
+        <div class="flex items-center text-sm text-gray-500 mb-4 flex-wrap gap-x-4 gap-y-2">
+            <span class="badge badge-outline"><i class="fa-solid fa-user mr-1"></i> By: @(Model.Post.User?.UserName ??
+                                "N/A")</span>
+            <span class="badge badge-outline"><i class="fa-solid fa-calendar-alt mr-1"></i> Created At:
+                @Html.DisplayFor(model => model.Post.CreatedAt)</span>
+            @if (Model.Post.UpdatedAt.HasValue)
+            {
+                <span class="badge badge-outline"><i class="fa-solid fa-clock-rotate-left mr-1"></i> Last Updated:
+                    @Html.DisplayFor(model => model.Post.UpdatedAt)</span>
+            }
+        </div>
+
+        <div class="prose max-w-none mb-6 p-4 bg-base-200 rounded-box">
+            @Html.Raw(Model.Post.Content.Replace("\n", "<br/>"))
+        </div>
+
+        <div class="card-actions justify-start mt-4">
+            <a asp-page="./Edit" asp-route-id="@Model.Post.Id" class="btn btn-primary"><i
+                    class="fa-solid fa-pen-to-square mr-2"></i> Edit Post</a>
+            <a asp-page="./Index" class="btn btn-ghost"><i class="fa-solid fa-arrow-left mr-2"></i> Back to List</a>
+        </div>
+    </div>
+</div>

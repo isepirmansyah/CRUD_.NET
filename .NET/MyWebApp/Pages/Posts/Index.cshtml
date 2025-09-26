@@ -1,0 +1,104 @@
+@page
+@model MyWebApp.Pages.Posts.IndexModel
+
+@{
+    ViewData["Title"] = "Posts";
+}
+
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+    <h1 class="text-4xl font-bold mb-8 text-center text-primary">
+        <i class="fa-solid fa-note-sticky text-primary-focus mr-3"></i>All Posts
+    </h1>
+
+    <div class="flex justify-end mb-6">
+        <a asp-page="Create"
+            class="btn btn-primary rounded-md shadow-md hover:scale-105 transition transform duration-200">
+            <i class="fa-solid fa-plus mr-2"></i> Create New Post
+        </a>
+    </div>
+
+    <div class="bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200">
+        @if (Model.Post != null && Model.Post.Any())
+        {
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-sm font-semibold tracking-wider">Title</th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold tracking-wider">Author</th>
+                            <th class="px-6 py-4 text-left text-sm font-semibold tracking-wider">Created At</th>
+                            <th class="px-6 py-4 text-center text-sm font-semibold tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Post)
+                        {
+                            <tr class="border-b border-gray-200 hover:bg-gray-50 transition duration-150">
+                                <td class="px-6 py-4 font-medium text-gray-900">@Html.DisplayFor(modelItem => item.Title)</td>
+                                <td class="px-6 py-4 text-gray-600">
+                                    <div class="flex items-center gap-2">
+                                        <i class="fa-solid fa-user text-info"></i>
+                                        <span>@(item.User?.UserName ?? "N/A")</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-gray-600">
+                                    <span class="text-xs text-gray-500">@Html.DisplayFor(modelItem => item.CreatedAt)</span>
+                                </td>
+                                <td class="px-6 py-4 text-center">
+                                    <div class="flex justify-center gap-2">
+                                        <a asp-page="./Edit" asp-route-id="@item.Id"
+                                            class="btn btn-sm btn-warning rounded-md tooltip flex items-center justify-center"
+                                            data-tip="Edit">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a asp-page="./Details" asp-route-id="@item.Id"
+                                            class="btn btn-sm btn-info rounded-md tooltip flex items-center justify-center"
+                                            data-tip="Details">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+                                        <a asp-page="./Delete" asp-route-id="@item.Id"
+                                            class="btn btn-sm btn-error rounded-md tooltip flex items-center justify-center"
+                                            data-tip="Delete">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="text-center py-16 px-4">
+                <i class="fa-solid fa-box-open text-6xl text-gray-300 mb-6"></i>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-2">No posts found</h2>
+                <p class="text-gray-500 mb-6">Be the first to create one!</p>
+                <a asp-page="Create"
+                    class="btn btn-primary rounded-md shadow-md hover:scale-105 transition transform duration-200">
+                    <i class="fa-solid fa-plus mr-2"></i> Create New Post
+                </a>
+            </div>
+        }
+    </div>
+
+    @if (Model.TotalPages > 1)
+    {
+        <div class="flex justify-center items-center mt-8 gap-4">
+            <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber - 1)"
+                class="btn btn-ghost border-gray-300 @(Model.PageNumber <= 1 ? "btn-disabled text-gray-400" : "")">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Previous
+            </a>
+
+            <span class="text-sm font-medium text-gray-700">
+                Page @Model.PageNumber of @Model.TotalPages
+            </span>
+
+            <a asp-page="./Index" asp-route-pageNumber="@(Model.PageNumber + 1)"
+                class="btn btn-ghost border-gray-300 @(Model.PageNumber >= Model.TotalPages ? "btn-disabled text-gray-400" : "")">
+                Next <i class="fa-solid fa-arrow-right ml-2"></i>
+            </a>
+        </div>
+    }
+</div>
