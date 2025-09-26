@@ -2,16 +2,6 @@
 
 Repositori ini berisi solusi untuk Tes Penilaian Software Engineer, dengan fokus pada implementasi .NET dari aplikasi web sederhana dengan fitur Otentikasi dan Manajemen Post (CRUD).
 
-## Struktur Proyek:
-
-my-assessment-project/
-├── .Net/ # Berisi aplikasi ASP.NET Core Razor Pages
-│ ├── MyWebApp/ # Proyek aplikasi web .NET utama
-│ ├── README.md # README spesifik untuk stack .NET
-│ └── Dockerfile # Dockerfile untuk mengkontainerisasi aplikasi .NET
-├── docker-compose.yml # Setup Docker Compose untuk menjalankan semua layanan (saat ini hanya .NET)
-└── README.md # File README utama repositori ini
-
 ## Fitur Utama:
 
 ### Otentikasi (Authentication)
@@ -42,8 +32,6 @@ Proyek ini menunjukkan kemahiran dengan stack **.NET**, secara khusus:
 - **Database:** Entity Framework Core dengan SQLite
 - **Otentikasi:** ASP.NET Core Identity
 - **UI:** DaisyUI, Tailwind CSS, Font Awesome
-
-_(Jika Anda mengimplementasikan stack lain, mereka akan dicantumkan di sini beserta teknologi masing-masing.)_
 
 ## Cara Menginstal dan Menjalankan:
 
@@ -108,12 +96,3 @@ Opsi ini memungkinkan menjalankan aplikasi dalam lingkungan ter-container.
     ```bash
     docker-compose down
     ```
-
-## Catatan Khusus & Pilihan Desain:
-
-- **Konsistensi Antar Stack:** Implementasi ini menunjukkan fitur yang diperlukan menggunakan stack .NET. Meskipun stack lain tidak secara eksplisit disediakan dalam prompt, struktur repositori disiapkan untuk inklusi mereka.
-- **Performa & Pemeliharaan:** ASP.NET Core Razor Pages menawarkan pendekatan yang produktif dan berkinerja tinggi untuk aplikasi web yang dirender di server, menyeimbangkan kemudahan pengembangan dengan fitur-fitur modern.
-- **Modularitas:** Proyek ini distrukturkan dengan pemisahan tanggung jawab yang jelas (Model, Data, Pages).
-- **Kustomisasi UI:** DaisyUI menyediakan pustaka komponen yang mempercepat pengembangan UI tanpa memerlukan CSS kustom yang kompleks. Ikon dari Font Awesome meningkatkan kegunaan.
-- **Setup Lingkungan Pengembangan Lokal:** Penggunaan alat .NET lokal (`dotnet-ef`, `dotnet-aspnet-codegenerator`) memastikan konsistensi lingkungan pengembangan dan menghindari konflik alat global.
-- **Otorisasi:** Semua fitur Manajemen Post (`Index`, `Details`, `Create`, `Edit`, `Delete`) dilindungi oleh otentikasi (`[Authorize]`). Selain itu, operasi `Edit` dan `Delete` mencakup logika untuk memastikan hanya penulis asli post yang dapat memodifikasi atau menghapusnya.

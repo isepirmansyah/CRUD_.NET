@@ -1,4 +1,4 @@
-# MyWebApp - Implementasi .NET untuk Tes Penilaian
+# MyWebApp - Implementasi .NET
 
 Direktori ini berisi implementasi proyek penilaian menggunakan stack .NET, dibangun dengan ASP.NET Core Razor Pages.
 
